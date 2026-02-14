@@ -1,29 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Layout</title>
-    <style>
-        .button-container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-        .yes-button {
-            margin-right: 10px;
-            // additional styles for the Yes button
-        }
-        .no-button {
-            position: absolute;
-            // additional styles for the No button
-        }
-    </style>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<!-- Cute handwritten font -->
+<link href="https://fonts.googleapis.com/css2?family=Oh+Darling&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Oh Darling', cursive;
+  background:linear-gradient(135deg,#ffd6e7,#ffeef5);
+  text-align:center;
+}
+
+.card{
+  background:white;
+  max-width:700px;
+  margin:8vh auto;
+  padding:40px;
+  border-radius:30px;
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
+  animation:fade 1s ease;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+img.main{
+  width:240px;
+  border-radius:20px;
+  margin:20px 0;
+}
+
+button{
+  padding:14px 30px;
+  font-size:22px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  margin:12px;
+  font-family:'Oh Darling', cursive;
+  transition: all 0.2s ease;
+}
+
+.yes{ 
+  background:#ff4d88; 
+  color:white;
+  position:relative;
+  z-index:10;
+}
+
+.no{ 
+  background:#ddd;
+  position:absolute;
+  z-index:5;
+}
+
+.arrow{
+  font-size:44px;
+  cursor:pointer;
+}
+
+.hidden{ display:none; }
+
+#duck{
+  width:220px;
+  margin-top:20px;
+}
+
+.button-container{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  height:80px;
+}
+</style>
 </head>
+
 <body>
-    <div class="button-container">
-        <button class="yes-button">Yes</button>
-        <button class="no-button">No</button>
-    </div>
+
+<!-- PAGE 1 -->
+<div id="page1" class="card">
+<h1>To My Man ❤️</h1>
+
+<img class="main" src="https://raw.githubusercontent.com/ushabumesh/test/main/yourphoto.jpeg" alt="My Love">
+
+<p>
+When I look at you, I see so much more than just the love of my life.  
+I see strength. I see patience. I see a man who gives his all, even on the hardest days.  
+I see how hard you work, how much you carry, and how you still show up with love.  
+I see you. I respect you. I believe in you. I've got your back, always.  
+And I hope you never forget just how much I love and appreciate you.
+</p>
+
+<div class="arrow" onclick="next(2)">➡️</div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="card hidden">
+<h1>Will you be my Valentine? ❤️</h1>
+
+<div class="button-container">
+  <button class="yes" onclick="sayYes()">Yes</button>
+  <button id="noBtn" class="no" onmousemove="escapeButton(event)" onclick="sayNo()">No</button>
+</div>
+
+<img id="duck" class="hidden" src="https://raw.githubusercontent.com/ushabumesh/test/main/duck.jpg">
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="card hidden">
+<h1>YAY!!! 🎉</h1>
+<h2>Your surprise will be delivered on March 7th ❤️</h2>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function next(p){
+  document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
+  document.getElementById("page"+p).classList.remove('hidden');
+}
+
+function sayYes(){
+  next(3);
+  confetti({particleCount:220,spread:130});
+}
+
+function escapeButton(event){
+  const noBtn = document.getElementById('noBtn');
+  const duck = document.getElementById('duck');
+  
+  // Show duck
+  duck.classList.remove('hidden');
+  
+  // Random position (moves button away)
+  const randomX = Math.random() * 300 - 150;
+  const randomY = Math.random() * 300 - 150;
+  
+  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+}
+
+function sayNo(){
+  document.getElementById("duck").classList.remove("hidden");
+}
+</script>
+
 </body>
 </html>
