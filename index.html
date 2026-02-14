@@ -44,20 +44,16 @@ button{
   cursor:pointer;
   margin:12px;
   font-family:'Oh Darling', cursive;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .yes{ 
   background:#ff4d88; 
   color:white;
-  position:relative;
-  z-index:10;
 }
 
 .no{ 
   background:#ddd;
-  position:absolute;
-  z-index:5;
 }
 
 .arrow{
@@ -73,12 +69,12 @@ button{
 }
 
 .button-container{
-  position:relative;
   display:flex;
   justify-content:center;
   align-items:center;
   gap:20px;
-  height:80px;
+  min-height:80px;
+  flex-wrap:wrap;
 }
 </style>
 </head>
@@ -108,7 +104,7 @@ And I hope you never forget just how much I love and appreciate you.
 
 <div class="button-container">
   <button class="yes" onclick="sayYes()">Yes</button>
-  <button id="noBtn" class="no" onmousemove="escapeButton(event)" onclick="sayNo()">No</button>
+  <button id="noBtn" class="no" onmouseover="escapeButton()" onclick="sayNo()">No</button>
 </div>
 
 <img id="duck" class="hidden" src="https://raw.githubusercontent.com/ushabumesh/test/main/duck.jpg">
@@ -133,7 +129,7 @@ function sayYes(){
   confetti({particleCount:220,spread:130});
 }
 
-function escapeButton(event){
+function escapeButton(){
   const noBtn = document.getElementById('noBtn');
   const duck = document.getElementById('duck');
   
